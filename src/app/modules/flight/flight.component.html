@@ -1,0 +1,187 @@
+
+<div class="input-group mb-3">
+  <div class="mx-2">
+    <label for="origin" class="form-label">
+      Ingrese una Ciudad de Origen
+    </label>
+    <input type="text" class="form-control"  pattern="[a-zA-Z ]*" maxlength="3" [(ngModel)]="origin" (keyup)="onchangeOrigin($event)" placeholder="Origin">
+  </div>
+  <div class="mx-2">
+    <label for="destination" class="form-label">
+      Ingrese una Ciudad de Destino
+    </label>
+    <input type="text" class="form-control"  pattern="[a-zA-Z ]*" maxlength="3" [(ngModel)]="destination" (keyup)="onchangeDestination($event)" placeholder="Destination">
+  </div>
+  <div class="mx-2">
+    <label for="maxStop" class="form-label">
+      Ingrese un máximo de escalas
+    </label>
+    <input type="number" class="form-control xs"  pattern="[0-9]*" min="1" max="5" step="1"  maxlength="1" [(ngModel)]="maxStops" (keyup)="onChangeStop($event)" placeholder="Price">
+  </div>
+  <div class="mx-2 my-4">
+    <button type="button" (click)="searchFlights()" class="btn btn-primary my-2" >Search</button>
+  </div>
+</div>
+<div class="container-fluid py-0">
+  <div class="row">
+    <div class="col-6">
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="eur" [(ngModel)]="eur">
+        <label class="form-check-label" for="cop">EUR</label>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="cad" [(ngModel)]="cad" >
+        <label class="form-check-label" for="cad">CAD</label>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="journey !== undefined && journey !== null" class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">Journey</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <div class="card my-2">
+                <div class="row">
+                  <div class="row">
+                    <div class="col-6">
+                      <h5 class="card-title">Origin:</h5>
+                    </div>
+                    <div class="col-6">
+                      {{journey.origin}}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <h5 class="card-title">Destination:</h5>
+                    </div>
+                    <div class="col-6">
+                      {{journey.destination}}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <h5 class="card-title">Price:</h5>
+                    </div>
+                    <div class="col-6">
+                      <div class="row">
+                        <div class="col-3">
+                          <div *ngIf="eur === true && cad === true">
+                            CAD${{journey.price| currencyConversion: 'CAD':data }}-
+                          </div>
+                        </div>
+                        <div class="col-3">
+                          <div *ngIf="eur === true && cad === true">
+                            €{{journey.price| currencyConversion: 'EUR':data}}
+                          </div>
+                        </div>
+                      </div>
+                      <div *ngIf="eur === true && cad === false">
+                        €{{journey.price| currencyConversion: 'EUR':data}}
+                      </div>
+                      <div *ngIf="eur === false && cad === true">
+                        CAD${{journey.price| currencyConversion: 'CAD':data}}
+                      </div>
+                      <div *ngIf="eur === false && cad === false">
+                        ${{journey.price }}
+                      </div>
+                    </div>
+                  <div class="row">
+                    <div class="col-12 text-center">
+                      <h2 class="card-title">Flights</h2>
+                    </div>
+                  </div>
+                  <div class="row my-3 mx-3">
+                    <div *ngFor="let flight of journey.flights" class="container col-12  card my-3">
+                      <div class="row">
+                        <div class="col-6">
+                          <h5 class="card-title">Origin:</h5>
+                        </div>
+                        <div class="col-6">
+                          {{flight.origin}}
+                        </div>
+                      </div>
+                      <div class="row">
+
+                        <div class="col-6">
+                          <h5 class="card-title">Destination</h5>
+                        </div>
+                        <div class="col-6">
+                          {{flight.destination}}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-6">
+                          <h5 class="card-title">Price:</h5>
+                        </div>
+                        <div class="col-6">
+                          <div class="row">
+                            <div class="col-3">
+                              <div *ngIf="eur === true && cad === true">
+                                CAD${{journey.price| currencyConversion: 'CAD':data }}-
+                              </div>
+                            </div>
+
+                            <div class="col-3">
+                              <div *ngIf="eur === true && cad === true">
+                                €{{journey.price| currencyConversion: 'EUR':data}}
+                              </div>
+                            </div>
+                          </div>
+                          <div *ngIf="eur === true && cad === false">
+                            €{{journey.price| currencyConversion: 'EUR':data}}
+                          </div>
+                          <div *ngIf="eur === false && cad === true">
+                            CAD${{journey.price| currencyConversion: 'CAD':data}}
+                          </div>
+                          <div *ngIf="eur === false && cad === false">
+                            ${{journey.price }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row" >
+                        <div class="col-12">
+                          <div class="row">
+                            <div class="col-6">
+                              <h5 class="card-title">FlightCarrier:</h5>
+                            </div>
+                            <div class="col-6">
+                              {{flight.transport.flightCarrier}}
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-6">
+                              <h5 class="card-title">FlightNumber:</h5>
+                            </div>
+                            <div class="col-6">
+                              {{flight.transport.flightNumber}}
+                            </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div *ngIf="showMessage===true && journey=== null" class="row">
+    <h3 class="alert alert-danger">
+      No se encontraron vuelos...
+      <hr>
+      <small>Por favor, intente nuevamente con valores diferentes</small>
+    </h3>
+  </div>
+</div>
+
