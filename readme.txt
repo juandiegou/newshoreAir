@@ -2,14 +2,14 @@ Configuración de Yarn como Gestor de Paquetes Global para Angular CLI
 
 Angular CLI es compatible con diferentes gestores de paquetes, incluyendo npm y Yarn. Si deseas utilizar Yarn como el gestor de paquetes global para Angular CLI, sigue estos pasos:
 
-1. Instala Yarn si aún no lo has hecho siguiendo las instrucciones en https://classic.yarnpkg.com/en/docs/install/.
+1. Instala Yarn si tienes lo tienes instalado puedes hacerlo siguiendo las instrucciones en https://classic.yarnpkg.com/en/docs/install/.
 
 2. Abre una terminal o línea de comandos y ejecuta el siguiente comando para configurar Yarn como el gestor de paquetes global para Angular CLI:
 
 ng config -g cli.packageManager yarn
 
 
-Esto le dice a Angular CLI que utilice Yarn en lugar de npm para la gestión de paquetes de manera global.
+Esto hace que Angular CLI que utilice Yarn en lugar de npm para la gestión de paquetes de manera global.
 
 Con esta configuración, puedes continuar utilizando Angular CLI como de costumbre, pero ahora estará utilizando Yarn como gestor de paquetes.
 
@@ -35,3 +35,6 @@ Yarn leerá el archivo `package.json` del proyecto y descargará todas las depen
 4. Una vez que Yarn haya terminado de instalar las dependencias, podrás continuar trabajando en tu proyecto Angular.
 
 Recuerda que en adelante, siempre puedes utilizar `yarn install` para asegurarte de que todas las dependencias estén actualizadas de acuerdo con las especificaciones en tu archivo `package.json`.
+
+Puedes correr el proyecto normalmente con el ng serve o verlo desplegado acá:
+https://newshore-air.vercel.app
