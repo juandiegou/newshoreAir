@@ -121,24 +121,24 @@
                           <div class="row">
                             <div class="col-3">
                               <div *ngIf="eur === true && cad === true">
-                                CAD${{journey.price| currencyConversion: 'CAD':data }}-
+                                CAD${{flight.price| currencyConversion: 'CAD':data }}-
                               </div>
                             </div>
 
                             <div class="col-3">
                               <div *ngIf="eur === true && cad === true">
-                                €{{journey.price| currencyConversion: 'EUR':data}}
+                                €{{flight.price| currencyConversion: 'EUR':data}}
                               </div>
                             </div>
                           </div>
                           <div *ngIf="eur === true && cad === false">
-                            €{{journey.price| currencyConversion: 'EUR':data}}
+                            €{{flight.price| currencyConversion: 'EUR':data}}
                           </div>
                           <div *ngIf="eur === false && cad === true">
-                            CAD${{journey.price| currencyConversion: 'CAD':data}}
+                            CAD${{flight.price| currencyConversion: 'CAD':data}}
                           </div>
                           <div *ngIf="eur === false && cad === false">
-                            ${{journey.price }}
+                            ${{flight.price }}
                           </div>
                         </div>
                       </div>
